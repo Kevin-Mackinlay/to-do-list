@@ -24,6 +24,8 @@ formTarea.onsubmit = (event) => {
     estado: false,
   };
   //guardamos en el array
+  if (nuevaTarea.tarea !== "") {
+
   tareas.push(nuevaTarea);
 
   //guardar en el localStorage
@@ -31,6 +33,9 @@ formTarea.onsubmit = (event) => {
   console.log(tareas);
   mostrarTareas();
   formTarea.reset();
+  } else {
+    alert("Por favor escribir algo vàlido");
+  }
 };
 
 //funcion y creacion de elementos ("div") y sus clases
