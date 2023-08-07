@@ -20,7 +20,7 @@ formTarea.onsubmit = (event) => {
   event.preventDefault();
   let nuevaTarea = {
     id: Date.now().toString(36),
-    tarea: inputTarea.value,
+    tarea: inputTarea.value.trim(),
     estado: false,
   };
   //guardamos en el array
@@ -64,10 +64,10 @@ const mostrarTareas = () => {
 
     //evento
     btnEliminar.onclick = () => {
-       tareas = tareas.filter(tarea => tarea.id !== tareas[index].id);
-       localStorage.setItem("tareas", JSON.stringify(tareas));
-       mostrarTareas();
-    }
+      tareas = tareas.filter((tarea) => tarea.id !== tareas[index].id);
+      localStorage.setItem("tareas", JSON.stringify(tareas));
+      mostrarTareas();
+    };
 
     //boton Realizado
 
@@ -78,17 +78,16 @@ const mostrarTareas = () => {
 
     //evento
     btnRealizado.onclick = () => {
-        if(tareas[index].estado === false) {
-            tareas[index].estado = true;
-           tareaTexto.classList.add("text-decoration-line-through"); 
-            localStorage.setItem("tareas", JSON.stringify(tareas));
-        }else if(tareas[index].estado === true) {
-            tareas[index].estado = false;
-             tareaTexto.classList.remove("text-decoration-line-through");
-              localStorage.setItem("tareas", JSON.stringify(tareas));
-        } 
-    }
-
+      if (tareas[index].estado === false) {
+        tareas[index].estado = true;
+        tareaTexto.classList.add("text-decoration-line-through");
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+      } else if (tareas[index].estado === true) {
+        tareas[index].estado = false;
+        tareaTexto.classList.remove("text-decoration-line-through");
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+      }
+    };
   });
 };
 
