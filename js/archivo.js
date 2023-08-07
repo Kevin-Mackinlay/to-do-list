@@ -62,13 +62,33 @@ const mostrarTareas = () => {
     btnEliminar.innerHTML = "Eliminar";
     div.appendChild(btnEliminar);
 
-    
-    //boton editar
+    //evento
+    btnEliminar.onclick = () => {
+       tareas = tareas.filter(tarea => tarea.id !== tareas[index].id);
+       localStorage.setItem("tareas", JSON.stringify(tareas));
+       mostrarTareas();
+    }
 
-    let btnEditar = document.createElement("button");
-    btnEditar.classList.add("btn", " btn-success", "ms-2");
-    btnEditar.innerHTML = "Editar";
-    div.appendChild(btnEditar);
+    //boton Realizado
+
+    let btnRealizado = document.createElement("button");
+    btnRealizado.classList.add("btn", "btn-success", "ms-2");
+    btnRealizado.innerHTML = "Realizado";
+    div.appendChild(btnRealizado);
+
+    //evento
+    btnRealizado.onclick = () => {
+        if(tareas[index].estado === false) {
+            tareas[index].estado = true;
+           tareaTexto.classList.add("text-decoration-line-through"); 
+            localStorage.setItem("tareas", JSON.stringify(tareas));
+        }else if(tareas[index].estado === true) {
+            tareas[index].estado = false;
+             tareaTexto.classList.remove("text-decoration-line-through");
+              localStorage.setItem("tareas", JSON.stringify(tareas));
+        } 
+    }
+
   });
 };
 
